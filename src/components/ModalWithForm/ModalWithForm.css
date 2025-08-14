@@ -9,8 +9,11 @@
   align-items: center;
   background-color: #0000004D;
   z-index: 100;
+  visibility: hidden;
 }
-
+.modal__opened{
+    visibility: visible;
+}
 .modal__overlay {
   position: absolute;
   top: 0;

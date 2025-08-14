@@ -1,13 +1,17 @@
 import "./ModalWithForm.css";
 
-function ModalWithForm({children, buttonText, title}) {
+function ModalWithForm({ children, buttonText, title, isOpen, onClose }) {
   return (
-    <div className="modal"> 
-      <form className="modal__form">
+    <div className={`modal ${isOpen ? "modal__opened" : ""}`}>
+      <div className="modal__overlay" onClick={onClose}></div>
+      <form className="modal__form" onClick={(e) => e.stopPropagation()}>
         <h2 className="modal__title">{title}</h2>
-        <button type="button" className="modal__close"></button>
+        <button
+          type="button"
+          className="modal__close"
+          onClick={onClose}
+        ></button>
         {children}
-        {/* Submit button */}
         <button type="submit" className="modal__submit">{buttonText}</button>
       </form>
     </div>

@@ -1,0 +1,66 @@
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 100;
+  visibility: hidden;
+}
+
+.modal__opened {
+  visibility: visible;
+}
+
+.modal__content {
+  position: relative;
+  background: transparent; /* No outer box background */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 498px;
+  width: 100%;
+}
+
+.modal__image {
+  width: 100%;
+  border-radius: 16px 16px 0 0;
+  object-fit: cover;
+}
+
+.modal__info {
+  background: #fff;
+  padding: 16px 20px;
+  border-radius: 0 0 16px 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.modal__name {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+}
+
+.modal__weather {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 16px;
+  margin: 0;
+}
+
+.modal__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 20px;
+  height: 20px;
+  background: url('../../assets/close-icon.svg') center no-repeat;
+  background-size: contain;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+  background-color: transparent;
+}
