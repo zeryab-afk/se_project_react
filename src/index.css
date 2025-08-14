@@ -2,17 +2,61 @@
 @import url('./vendor/Normalize.css');
 @import url('./vendor/fonts.css');
 
-/* Then add your global styles */
+/* Global Styles */
 body {
   font-family: 'Cabinet Grotesk', -apple-system, sans-serif;
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f7f7f7; /* Light gray background from design */
+  color: #000; /* Default text color */
 }
 
-/* Apply to specific elements */
+/* Typography */
+h1, h2, h3, h4 {
+  font-family: 'Cabinet Grotesk';
+  margin: 0;
+  font-weight: 700; /* Bold for headings as seen in design */
+}
+
+/* Weather Card Temperature */
 .weather-card__temp {
   font-family: 'Cabinet Grotesk';
+  font-weight: 700; /* Bold for temperature as shown in design */
+  font-size: 36px; /* Size from design */
+  color: #fff; /* White text on weather card */
+}
+
+/* Modal Text (matches your design) */
+.modal__title {
+  font-family: 'Cabinet Grotesk';
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+/* Buttons */
+button {
+  font-family: 'Cabinet Grotesk';
+  font-weight: 500; /* Medium weight for buttons */
+}
+
+/* Links */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Utility Classes */
+.text-bold {
+  font-weight: 700;
+}
+
+.text-medium {
   font-weight: 500;
+}
+
+.text-regular {
+  font-weight: 400;
 }
