@@ -1,0 +1,22 @@
+.cards__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 21px;
+  margin:0;
+  padding: 0;
+  list-style: none;
+  justify-content: center;
+}
+
+.cards__text {
+  font-size: 20px;
+  margin-left: 40px;
+  margin-top: 50px;
+  margin-bottom: 40px;
+  color: #333;
+  line-height: 100%;
+}
+.cards-container {
+  display: flex; /* or block if you don't want flex */
+  width: 100%;
+}

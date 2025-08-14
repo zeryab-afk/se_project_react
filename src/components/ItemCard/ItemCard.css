@@ -1,0 +1,19 @@
+.card{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    
+}
+.card__name{
+    position: absolute;
+    top: 15px;
+    margin: 0;
+    background:#FFFFFF;
+    padding: 4px 10px;
+   
+}
+.card__image{
+    width: 100%;
+    border: 2px solid #0000004D;
+    border-radius: 50px;   
+}

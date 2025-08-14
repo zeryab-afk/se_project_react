@@ -1,2 +1,18 @@
-@import url(./vendor/Normalize.css);
+/* Import Normalize.css and fonts first */
+@import url('./vendor/Normalize.css');
 @import url('./vendor/fonts.css');
+
+/* Then add your global styles */
+body {
+  font-family: 'Cabinet Grotesk', -apple-system, sans-serif;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Apply to specific elements */
+.weather-card__temp {
+  font-family: 'Cabinet Grotesk';
+  font-weight: 500;
+}
