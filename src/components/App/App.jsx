@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import ItemCard from '../ItemCard/ItemCard.jsx';
 
 import "./App.css";
 import { coordinates, APIKEY } from "../../utils/constants";
@@ -7,6 +8,7 @@ import Main from "../Main/Main";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import Footer from "../Footer/Footer";
 import ItemModal from "../ItemModal/ItemModal";
+
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 
 function App() {
