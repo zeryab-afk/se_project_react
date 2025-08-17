@@ -1,8 +1,8 @@
 import "./WeatherCard.css"
 import cloudy from "../../assets/cloudy.png"
-function WeatherCard() {
+function WeatherCard({weatherData}) {
     return <section className="Weather-Card">
-        <p className="Weather-Card__temp">75 &deg; F</p>
+        <p className="Weather-Card__temp">{weatherData.temp.F} &deg; F</p>
         <img src={cloudy} alt="cloudy" className="Weather-Card__image" />
     </section>
 }
