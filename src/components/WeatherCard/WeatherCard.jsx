@@ -1,5 +1,5 @@
 import "./WeatherCard.css";
-import { weatherOptions, defaultweatherOptions } from "../../utils/constants";
+import { weatherOptions, defaultWeatherOptions } from "../../utils/constants";
 
 function WeatherCard({ weatherData }) {
   const filteredOptions = weatherOptions.filter(
@@ -16,7 +16,7 @@ function WeatherCard({ weatherData }) {
   if (filteredOptions.length === 0) {
     // Use default image
     const defaultOption =
-      defaultweatherOptions[weatherData.isDay ? "day" : "night"];
+      defaultWeatherOptions[weatherData.isDay ? "day" : "night"];
     weatherOptionUrl = defaultOption.url;
     weatherOptionCondition = ""; // no specific condition
     weatherOptionDay = weatherData.isDay;

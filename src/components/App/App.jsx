@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import ItemCard from '../ItemCard/ItemCard.jsx';
 
 import "./App.css";
-import { coordinates, APIKEY } from "../../utils/constants";
+import { coordinates, apiKey } from "../../utils/constants"; // updated
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
@@ -11,6 +11,14 @@ import ItemModal from "../ItemModal/ItemModal";
 
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 
+// Example default clothing items
+const defaultClothingItems = [
+  { id: 1, name: "T-Shirt", type: "hot", imageUrl: "https://example.com/tshirt.jpg" },
+  { id: 2, name: "Sweater", type: "cold", imageUrl: "https://example.com/sweater.jpg" },
+  { id: 3, name: "Jacket", type: "cold", imageUrl: "https://example.com/jacket.jpg" },
+  { id: 4, name: "Shorts", type: "warm", imageUrl: "https://example.com/shorts.jpg" },
+];
+
 function App() {
   const [weatherData, setWeatherData] = useState({
     type: "",
@@ -18,51 +26,51 @@ function App() {
     city: "",
   });
 
+  // 🔑 State for clothing items
+  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+
   // State for ItemModal
   const [selectedItem, setSelectedItem] = useState(null);
 
-  // 🔑 New state for Add Clothes Modal
+  // State for Add Clothes Modal
   const [isAddClothesModalOpen, setIsAddClothesModalOpen] = useState(false);
 
-  // Handle opening Add Clothes modal
   const handleAddClothesClick = () => {
     setIsAddClothesModalOpen(true);
   };
 
-  // Handle closing any modal
   const handleCloseModal = () => {
     setSelectedItem(null);
     setIsAddClothesModalOpen(false);
   };
 
-  // Handle clicking on a clothing card
   const handleCardClick = (item) => {
     setSelectedItem(item);
   };
 
-  // Fetch weather data
   useEffect(() => {
-    getWeather(coordinates, APIKEY)
+    getWeather(coordinates, apiKey)  // <-- updated to camelCase
       .then((data) => {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
       })
-      .catch((err) => {
-        console.error(err);
-      });
+      .catch((err) => console.error(err));
   }, []);
 
   return (
     <div className="page">
-      {/* Pass handleAddClothesClick to Header */}
       <Header
         weatherData={weatherData}
         onAddClothesClick={handleAddClothesClick}
       />
 
-      <Main weatherData={weatherData} onCardClick={handleCardClick} />
+      {/* Pass clothingItems to Main */}
+      <Main
+        weatherData={weatherData}
+        onCardClick={handleCardClick}
+        clothingItems={clothingItems}
+      />
 
-      {/* Add Clothes Modal */}
       <ModalWithForm
         title="New Garment"
         buttonText="Add Garment"
@@ -76,31 +84,51 @@ function App() {
             className="modal__input"
             id="name"
             placeholder="Name"
+            required
           />
         </label>
 
         <label htmlFor="imageUrl" className="modal__label">
-          Image{" "}
+          Image URL{" "}
           <input
-            type="text"
+            type="url"
             className="modal__input"
             id="imageUrl"
             placeholder="Image URL"
+            required
           />
         </label>
 
         <fieldset className="modal__radio-buttons">
           <legend className="modal__legend">Select the weather type:</legend>
           <label htmlFor="hot" className="modal__label modal__label_type_radio">
-            <input id="hot" type="radio" className="modal__radio-input" />
+            <input
+              id="hot"
+              type="radio"
+              name="weather"
+              value="hot"
+              className="modal__radio-input"
+            />
             Hot
           </label>
           <label htmlFor="warm" className="modal__label modal__label_type_radio">
-            <input id="warm" type="radio" className="modal__radio-input" />
+            <input
+              id="warm"
+              type="radio"
+              name="weather"
+              value="warm"
+              className="modal__radio-input"
+            />
             Warm
           </label>
           <label htmlFor="cold" className="modal__label modal__label_type_radio">
-            <input id="cold" type="radio" className="modal__radio-input" />
+            <input
+              id="cold"
+              type="radio"
+              name="weather"
+              value="cold"
+              className="modal__radio-input"
+            />
             Cold
           </label>
         </fieldset>
@@ -108,7 +136,6 @@ function App() {
 
       <Footer />
 
-      {/* Item Modal */}
       {selectedItem && (
         <ItemModal item={selectedItem} onClose={handleCloseModal} />
       )}

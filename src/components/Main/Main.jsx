@@ -6,14 +6,14 @@ import { defaultClothingItems } from "../../utils/constants";
 function Main({ weatherData, onCardClick }) {
   return (
     <main>
-      <WeatherCard weatherData ={weatherData}/>
+      <WeatherCard weatherData={weatherData} />
       <section className="cards">
         <p className="cards__text">
           Today is {weatherData.temp.F} &deg; F / You may want to wear:
         </p>
         <div className="cards__list">
           {defaultClothingItems
-            // .filter((item) => item.weather === weatherData.type)
+            .filter((item) => item.weather === weatherData.type)
             .map((item) => {
               return (
                 <ItemCard

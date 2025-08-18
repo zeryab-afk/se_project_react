@@ -1,6 +1,8 @@
-export const getWeather = ({ latitude, longitude }, APIKEY) => {
+
+export const getWeather = ({ latitude, longitude }, apiKey) => {
+  // Add &units=imperial to get temperatures in Fahrenheit
   return fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${APIKEY}`
+    `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=imperial`
   ).then((res) => {
     if (res.ok) {
       return res.json();
@@ -15,7 +17,7 @@ export const filterWeatherData = (data) => {
   result.city = data.name;
   result.temp = { F: data.main.temp };
   result.condition = data.weather[0].main.toLowerCase();
-  result.day = isDay(data.sys, Date.now());
+  result.isDay = isDay(data.sys); // Rename day -> isDay
   result.type = getWeatherType(result.temp.F);
   return result;
 };
