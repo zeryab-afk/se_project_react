@@ -11,9 +11,12 @@
   z-index: 100;
   visibility: hidden;
 }
-.modal__opened{
-    visibility: visible;
+
+/* 🔧 Changed .modal__opened → .modal_opened */
+.modal_opened {
+  visibility: visible;
 }
+
 .modal__overlay {
   position: absolute;
   top: 0;

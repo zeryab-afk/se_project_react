@@ -1,9 +1,10 @@
 import "./Main.css";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
-import { defaultClothingItems } from "../../utils/constants";
+// 🔧 Removed unused import of defaultClothingItems
+// import { defaultClothingItems } from "../../utils/constants";
 
-function Main({ weatherData, onCardClick }) {
+function Main({ weatherData, onCardClick, clothingItems }) {  //  Added clothingItems prop
   return (
     <main>
       <WeatherCard weatherData={weatherData} />
@@ -12,7 +13,8 @@ function Main({ weatherData, onCardClick }) {
           Today is {weatherData.temp.F} &deg; F / You may want to wear:
         </p>
         <div className="cards__list">
-          {defaultClothingItems
+          {/* 🔧 Now rendering from clothingItems prop instead of defaultClothingItems */}
+          {clothingItems
             .filter((item) => item.weather === weatherData.type)
             .map((item) => {
               return (
