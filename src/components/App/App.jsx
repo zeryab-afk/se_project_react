@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import ItemCard from '../ItemCard/ItemCard.jsx';
 
 import "./App.css";
-import { coordinates, apiKey } from "../../utils/constants"; // updated
+import { coordinates, apiKey, defaultClothingItems } from "../../utils/constants"; // ✅ Added import
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
@@ -11,14 +11,6 @@ import ItemModal from "../ItemModal/ItemModal";
 
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 
-// Example default clothing items
-const defaultClothingItems = [
-  { id: 1, name: "T-Shirt", type: "hot", imageUrl: "https://example.com/tshirt.jpg" },
-  { id: 2, name: "Sweater", type: "cold", imageUrl: "https://example.com/sweater.jpg" },
-  { id: 3, name: "Jacket", type: "cold", imageUrl: "https://example.com/jacket.jpg" },
-  { id: 4, name: "Shorts", type: "warm", imageUrl: "https://example.com/shorts.jpg" },
-];
-
 function App() {
   const [weatherData, setWeatherData] = useState({
     type: "",
@@ -26,13 +18,10 @@ function App() {
     city: "",
   });
 
-  // 🔑 State for clothing items
+  // ✅ Now using the correct defaultClothingItems from constants
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
 
-  // State for ItemModal
   const [selectedItem, setSelectedItem] = useState(null);
-
-  // State for Add Clothes Modal
   const [isAddClothesModalOpen, setIsAddClothesModalOpen] = useState(false);
 
   const handleAddClothesClick = () => {
@@ -49,7 +38,7 @@ function App() {
   };
 
   useEffect(() => {
-    getWeather(coordinates, apiKey)  // <-- updated to camelCase
+    getWeather(coordinates, apiKey)
       .then((data) => {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
@@ -64,7 +53,6 @@ function App() {
         onAddClothesClick={handleAddClothesClick}
       />
 
-      {/* Pass clothingItems to Main */}
       <Main
         weatherData={weatherData}
         onCardClick={handleCardClick}
