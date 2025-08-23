@@ -1,12 +1,10 @@
 import "./Main.css";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
-// Import the context and useContext hook
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import { useContext } from "react";
 
 function Main({ weatherData, onCardClick, clothingItems }) {
-  // Use the context to get current temperature unit
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
 
   return (

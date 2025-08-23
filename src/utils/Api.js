@@ -1,6 +1,5 @@
 const baseUrl = 'http://localhost:3001';
 
-// GET /items
 export const getClothingItems = () => {
   return fetch(`${baseUrl}/items`, {
     method: 'GET',
@@ -15,7 +14,6 @@ export const getClothingItems = () => {
   });
 };
 
-// POST /items
 export const addClothingItem = (item) => {
   return fetch(`${baseUrl}/items`, {
     method: 'POST',
@@ -35,7 +33,6 @@ export const addClothingItem = (item) => {
   });
 };
 
-// DELETE /items/:id
 export const deleteClothingItem = (id) => {
   return fetch(`${baseUrl}/items/${id}`, {
     method: 'DELETE',
