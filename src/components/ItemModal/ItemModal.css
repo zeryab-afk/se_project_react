@@ -35,6 +35,7 @@
   border-radius: 0 0 16px 16px;
   width: 100%;
   box-sizing: border-box;
+  position: relative;
 }
 
 .modal__name {
@@ -47,7 +48,7 @@
 .modal__weather {
   font-family: 'Cabinet Grotesk', sans-serif;
   font-size: 16px;
-  margin: 0;
+  margin: 0 0 16px 0;
 }
 
 .modal__close {
@@ -63,4 +64,25 @@
   padding: 0;
   outline: none;
   background-color: transparent;
+}
+
+/* ADD DELETE BUTTON STYLES */
+.modal__delete-button {
+  background-color: #FF4D4F;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+  position: absolute;
+  bottom: 16px;
+  right: 20px;
+}
+
+.modal__delete-button:hover {
+  background-color: #D9363E;
 }
