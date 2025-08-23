@@ -1,0 +1,29 @@
+/* AddItemModal doesn't need much CSS since it uses ModalWithForm styles */
+/* But we need specific styles for the radio buttons */
+.modal__radio-buttons {
+  border: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.modal__legend {
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 16px;
+}
+
+.modal__label_type_radio {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  cursor: pointer;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 16px;
+}
+
+.modal__radio-input {
+  margin-right: 8px;
+  width: 16px;
+  height: 16px;
+}
