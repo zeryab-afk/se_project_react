@@ -32,21 +32,15 @@ function Header({ onAddClothesClick, weatherData }) {
       
       <img className="header__logo" src={logo} alt="WTWR logo" />
       
-      <p
-      
-       className="header__date-and-location">
+      <p className="header__date-and-location">
         {currentDateTime}, {weatherData.city}  
       </p>
-      
+
       <button
         className="header__add-clothes-btn"
-        
         onClick={onAddClothesClick}
-        
       >
-        
         + Add clothes
-        
       </button>
 <ToggleSwitch/>
       <div className="header__user-container">
