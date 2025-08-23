@@ -1,4 +1,3 @@
-// src/components/WeatherCard/WeatherCard.jsx
 import "./WeatherCard.css";
 import { weatherOptions, defaultWeatherOptions } from "../../utils/constants";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
@@ -30,14 +29,14 @@ function WeatherCard({ weatherData }) {
   }
 
   return (
-    <section className="Weather-Card">
-      <p className="Weather-Card__temp">
+    <section className="weather-card">
+      <p className="weather-card__temp">
         {weatherData.temp[currentTemperatureUnit]} &deg; {currentTemperatureUnit}
       </p>
       {weatherOptionUrl && (
         <img
           src={weatherOptionUrl}
-          className="Weather-Card__image"
+          className="weather-card__image"
           alt={`Card showing ${
             weatherOptionDay ? "day" : "night"
           }time${weatherOptionCondition ? ` ${weatherOptionCondition}` : ""}`}

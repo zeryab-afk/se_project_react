@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import "./Header.css";
 import logo from "../../assets/logo.svg";
 import avatar from "../../assets/avatar.png";
-import ToggleSwitch from "../toggleswitch/toggleswitch";
-
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 function Header({ onAddClothesClick, weatherData }) {
   const [currentDateTime, setCurrentDateTime] = useState("");
 

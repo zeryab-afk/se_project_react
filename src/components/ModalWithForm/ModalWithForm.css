@@ -13,7 +13,7 @@
 }
 
 /* 🔧 Changed .modal__opened → .modal_opened */
-.modal_opened {
+.modal__opened {
   visibility: visible;
 }
 
