@@ -67,22 +67,21 @@
 }
 
 /* ADD DELETE BUTTON STYLES */
+/* REPLACE DELETE BUTTON STYLES */
 .modal__delete-button {
-  background-color: #FF4D4F;
-  color: white;
+  background: none;
   border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
+  color: #FF4D00;
   font-family: 'Cabinet Grotesk', sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  transition: background-color 0.2s ease;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
   position: absolute;
-  bottom: 16px;
-  right: 20px;
+  bottom: 60px;
+  right: 32px;
 }
 
 .modal__delete-button:hover {
-  background-color: #D9363E;
+  opacity: 0.6;
 }

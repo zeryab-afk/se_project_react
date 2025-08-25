@@ -1,14 +1,13 @@
 // src/utils/weatherApi.js
+// CHANGED: Import checkResponse function
+import { checkResponse } from './Api';
+
 export const getWeather = ({ latitude, longitude }, apiKey) => {
   return fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=imperial`
-  ).then((res) => {
-    if (res.ok) {
-      return res.json();
-    } else {
-      return Promise.reject(`Error: ${res.status}`);
-    }
-  });
+  )
+  // CHANGED: Use checkResponse instead of repeating logic
+  .then(checkResponse);
 };
 
 export const filterWeatherData = (data) => {

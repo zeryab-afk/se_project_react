@@ -1,11 +1,12 @@
 import "./ModalWithForm.css";
 
-function ModalWithForm({ children, buttonText, title, isOpen, onClose }) {
+// CHANGED: Added onSubmit prop
+function ModalWithForm({ children, buttonText, title, isOpen, onClose, onSubmit }) {
   return (
-    // ✅ Reverted to original class name "modal__opened"
     <div className={`modal ${isOpen ? "modal__opened" : ""}`}>
       <div className="modal__overlay" onClick={onClose}></div>
-      <form className="modal__form" onClick={(e) => e.stopPropagation()}>
+      {/* CHANGED: Changed onClick to onSubmit */}
+      <form className="modal__form" onSubmit={onSubmit}>
         <h2 className="modal__title">{title}</h2>
         <button
           type="button"

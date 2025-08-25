@@ -1,27 +1,33 @@
 .clothes-section {
   flex: 1;
+  margin-top: 40px;
 }
 
 .clothes-section__header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  align-items: center; /* CHANGED: Removed justify-content: space-between */
   margin-bottom: 20px;
+  gap: 20px; /* CHANGED: Added gap instead of space-between */
 }
 
 .clothes-section__title {
-  font-size: 24px;
-  font-weight: 600;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
   margin: 0;
+  white-space: nowrap; /* ADDED: Prevent text wrapping */
 }
 
 .clothes-section__add-button {
   background: none;
   border: none;
-  color: #007BFF;
-  font-size: 16px;
+  color: rgba(0, 0, 0, 0.6);
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
   cursor: pointer;
-  padding: 8px 16px;
+  padding: 0;
+  white-space: nowrap; /* ADDED: Prevent button text wrapping */
 }
 
 .clothes-section__add-button:hover {

@@ -37,14 +37,15 @@ function Header({ onAddClothesClick, weatherData }) {
         {currentDateTime}, {weatherData.city}  
       </p>
 
+      {/* CHANGED: Moved ToggleSwitch before the Add clothes button */}
+      <ToggleSwitch/>
+      
       <button
         className="header__add-clothes-btn"
         onClick={onAddClothesClick}
       >
         + Add clothes
       </button>
-      
-      <ToggleSwitch/>
       
       <Link to="/profile" className="header__user-container">
         <p className="header__username">Terrence Tegegne</p>
