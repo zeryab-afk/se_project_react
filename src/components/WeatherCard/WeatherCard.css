@@ -2,7 +2,6 @@
   position: relative;
   display: flex;
   height: 80px;
-  border: 12px; /* ⚠️ This is incomplete, you probably meant border-width + style + color */
 }
 
 .weather-card__temp {

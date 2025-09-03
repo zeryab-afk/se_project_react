@@ -21,7 +21,7 @@
     cursor: pointer;
 }
 
-/* Like button styles - CSS heart shape */
+/* Like button styles */
 .card__like-button {
   position: absolute;
   top: 15px;
@@ -33,38 +33,10 @@
   cursor: pointer;
   padding: 0;
   z-index: 1;
-  
-  /* Heart shape using CSS */
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    width: 10px;
-    height: 16px;
-    background: white;
-    border: 1px solid rgba(0, 0, 0, 0.5);
-    border-radius: 10px 10px 0 0;
-  }
-  
-  &::before {
-    left: 10px;
-    transform: rotate(-45deg);
-    transform-origin: 0 100%;
-  }
-  
-  &::after {
-    left: 0;
-    transform: rotate(45deg);
-    transform-origin: 100% 100%;
-  }
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .card__like-button_active {
-  /* Filled heart - red color */
-  &::before,
-  &::after {
-    background: #FF4D4D;
-    border-color: #FF4D4D;
-  }
+  color: #FF4D4D;
 }

@@ -7,7 +7,6 @@ import CurrentUserContext from '../../contexts/CurrentUserContext';
 function SideBar({ onEditProfileClick }) {
   const currentUser = useContext(CurrentUserContext);
 
-  // Get user avatar or default
   const getUserAvatar = () => {
     if (currentUser.avatar) {
       return currentUser.avatar;
@@ -15,7 +14,6 @@ function SideBar({ onEditProfileClick }) {
     return avatar;
   };
 
-  // Get user name or default
   const getUserName = () => {
     if (currentUser.name) {
       return currentUser.name;
@@ -23,7 +21,6 @@ function SideBar({ onEditProfileClick }) {
     return "Terrence Tegegne";
   };
 
-  // Get user initial for placeholder
   const getUserInitial = () => {
     if (currentUser.name) {
       return currentUser.name.charAt(0).toUpperCase();

@@ -1,7 +1,6 @@
 // src/components/EditProfileModal/EditProfileModal.jsx
 import { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import "./EditProfileModal.css";
 
 function EditProfileModal({ isOpen, onClose, onUpdateUser, currentUser }) {
   const [name, setName] = useState("");
@@ -28,8 +27,9 @@ function EditProfileModal({ isOpen, onClose, onUpdateUser, currentUser }) {
       buttonText="Save changes"
     >
       <div className="modal__input-group">
-        <label className="modal__label">Name</label>
+        <label className="modal__label" htmlFor="edit-name">Name</label>
         <input
+          id="edit-name"
           className="modal__input"
           type="text"
           placeholder="Name"
@@ -39,8 +39,9 @@ function EditProfileModal({ isOpen, onClose, onUpdateUser, currentUser }) {
         />
       </div>
       <div className="modal__input-group">
-        <label className="modal__label">Avatar URL</label>
+        <label className="modal__label" htmlFor="edit-avatar">Avatar URL</label>
         <input
+          id="edit-avatar"
           className="modal__input"
           type="url"
           placeholder="Avatar URL"

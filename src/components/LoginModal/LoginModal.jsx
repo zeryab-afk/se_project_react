@@ -25,8 +25,9 @@ function LoginModal({ isOpen, onClose, onLogin, onRegisterClick }) {
       isFormValid={isFormValid}
     >
       <div className="modal__input-group">
-        <label className="modal__label">Email</label>
+        <label className="modal__label" htmlFor="login-email">Email</label>
         <input
+          id="login-email"
           className="modal__input"
           type="email"
           placeholder="Email"
@@ -36,8 +37,9 @@ function LoginModal({ isOpen, onClose, onLogin, onRegisterClick }) {
         />
       </div>
       <div className="modal__input-group">
-        <label className="modal__label">Password</label>
+        <label className="modal__label" htmlFor="login-password">Password</label>
         <input
+          id="login-password"
           className="modal__input"
           type="password"
           placeholder="Password"
