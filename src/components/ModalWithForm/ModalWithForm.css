@@ -1,3 +1,4 @@
+/* src/components/ModalWithForm/ModalWithForm.css */
 .modal {
   position: fixed;
   top: 0;
@@ -12,7 +13,6 @@
   visibility: hidden;
 }
 
-/* 🔧 Changed .modal__opened → .modal_opened */
 .modal__opened {
   visibility: visible;
 }
@@ -32,7 +32,6 @@
   padding: 28px;
   width: 100%;
   max-width: 496px;
-  height: 436px;
   box-sizing: border-box;
 }
 
@@ -57,10 +56,17 @@
   padding: 0;
 }
 
+.modal__button-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 32px;
+}
+
 .modal__submit {  
   padding: 8px 16px;
-  background: #E0E0E0; /* Light gray background */
-  color: #fff; /* Black text */
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
   border: none;
   border-radius: 4px;
   font-family: 'Cabinet Grotesk', sans-serif;
@@ -68,11 +74,34 @@
   font-size: 16px;
   line-height: 20px;
   cursor: pointer;
-  margin-top: 24px;
-  align-self: flex-end;
-  
+  transition: background 0.2s ease;
+  white-space: nowrap;
 }
 
+.modal__submit_active {
+  background: #000;
+}
+
+.modal__submit:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal__alt-text {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.modal__alt-button {
+  color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  font-weight: 700;
+  margin-left: 4px;
+}
+
+.modal__alt-button:hover {
+  opacity: 0.7;
+}
 
 .modal__input-group {
   margin-bottom: 24px;
@@ -85,6 +114,7 @@
   font-size: 16px;
   line-height: 20px;
   margin-bottom: 8px;
+  color: #000;
 }
 
 .modal__input {
@@ -95,6 +125,7 @@
   font-family: 'Cabinet Grotesk', sans-serif;
   font-size: 16px;
   line-height: 20px;
+  background: transparent;
 }
 
 .modal__input:focus {
@@ -102,7 +133,11 @@
   border-bottom: 1px solid #0077ff;
 }
 
-/* Remove default fieldset border */
+.modal__input::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+  opacity: 1;
+}
+
 .modal__radio-buttons {
   border: none;
   padding: 0;
@@ -116,7 +151,6 @@
   font-size: 16px;
   line-height: 20px;
   margin-bottom: 12px;
-  
 }
 
 .modal__label_type_radio {
@@ -129,7 +163,6 @@
   cursor: pointer;
 }
 
-/* Custom radio buttons */
 .modal__radio-input {
   appearance: none;
   -webkit-appearance: none;

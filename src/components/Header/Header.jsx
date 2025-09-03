@@ -1,11 +1,15 @@
-import { useState, useEffect } from "react";
+// src/components/Header/Header.jsx
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
 import logo from "../../assets/logo.svg";
 import avatar from "../../assets/avatar.png";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
-function Header({ onAddClothesClick, weatherData }) {
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+
+function Header({ onAddClothesClick, weatherData, onLoginClick, onRegisterClick, isLoggedIn, onLogout }) {
   const [currentDateTime, setCurrentDateTime] = useState("");
+  const currentUser = useContext(CurrentUserContext);
 
   useEffect(() => {
     const updateDateTime = () => {
@@ -24,7 +28,30 @@ function Header({ onAddClothesClick, weatherData }) {
 
     return () => clearInterval(interval); 
   }, []);
-  
+
+  // NEW: Get user avatar or initial
+  const getUserAvatar = () => {
+    if (currentUser.avatar) {
+      return currentUser.avatar;
+    }
+    return avatar; // default avatar
+  };
+
+  // NEW: Get user name or initial
+  const getUserName = () => {
+    if (currentUser.name) {
+      return currentUser.name;
+    }
+    return "Terrence Tegegne"; // default name
+  };
+
+  // NEW: Get user initial for placeholder
+  const getUserInitial = () => {
+    if (currentUser.name) {
+      return currentUser.name.charAt(0).toUpperCase();
+    }
+    return "T";
+  };
 
   return (
     <header className="header page__container">
@@ -37,20 +64,43 @@ function Header({ onAddClothesClick, weatherData }) {
         {currentDateTime}, {weatherData.city}  
       </p>
 
-      {/* CHANGED: Moved ToggleSwitch before the Add clothes button */}
       <ToggleSwitch/>
       
-      <button
-        className="header__add-clothes-btn"
-        onClick={onAddClothesClick}
-      >
-        + Add clothes
-      </button>
-      
-      <Link to="/profile" className="header__user-container">
-        <p className="header__username">Terrence Tegegne</p>
-        <img src={avatar} alt="Terrence Tegegne" className="header__avatar" />
-      </Link>
+      {isLoggedIn ? (
+        <>
+          <button
+            className="header__add-clothes-btn"
+            onClick={onAddClothesClick}
+          >
+            + Add clothes
+          </button>
+          
+          <div className="header__user-container">
+            <button className="header__logout-btn" onClick={onLogout}>
+              Log out
+            </button>
+            <Link to="/profile" className="header__user-link">
+              <p className="header__username">{getUserName()}</p>
+              {currentUser.avatar ? (
+                <img src={getUserAvatar()} alt={getUserName()} className="header__avatar" />
+              ) : (
+                <div className="header__avatar-placeholder">
+                  {getUserInitial()}
+                </div>
+              )}
+            </Link>
+          </div>
+        </>
+      ) : (
+        <div className="header__auth-buttons">
+          <button className="header__auth-btn" onClick={onRegisterClick}>
+            Sign up
+          </button>
+          <button className="header__auth-btn" onClick={onLoginClick}>
+            Log in
+          </button>
+        </div>
+      )}
       
     </header>
   );

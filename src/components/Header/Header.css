@@ -1,3 +1,4 @@
+/* src/components/Header/Header.css */
 .header {
   display: flex;
   align-items: center;
@@ -18,7 +19,6 @@
 }
 
 .header__add-clothes-btn {
-  
   background: none;
   border: none;
   color: #000;
@@ -26,6 +26,7 @@
   font-weight: 500; /* Medium */
   cursor: pointer;
   order: 3; 
+  margin-right: 20px;
 }
 
 /* ADDED: Toggle switch styling */
@@ -52,4 +53,63 @@
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
+}
+
+/* NEW: Avatar placeholder */
+.header__avatar-placeholder {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+  font-size: 18px;
+}
+
+/* NEW: Auth buttons */
+.header__auth-buttons {
+  display: flex;
+  gap: 10px;
+  order: 4;
+}
+
+.header__auth-btn {
+  background: none;
+  border: none;
+  color: #000;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+.header__auth-btn:hover {
+  opacity: 0.7;
+}
+
+/* NEW: Logout button */
+.header__logout-btn {
+  background: none;
+  border: none;
+  color: #000;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 5px 10px;
+  margin-right: 10px;
+}
+
+.header__logout-btn:hover {
+  opacity: 0.7;
+}
+
+.header__user-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: inherit;
 }

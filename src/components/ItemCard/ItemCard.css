@@ -1,3 +1,4 @@
+/* src/components/ItemCard/ItemCard.css */
 .card{
     position: relative;
     display: flex;
@@ -10,11 +11,60 @@
     margin: 0;
     background:#FFFFFF;
     padding: 4px 10px;
-   
+    border-radius: 4px;
+    z-index: 1;
 }
 .card__image{
     width: 100%;
     border: 2px solid #0000004D;
     border-radius: 50px;   
-    
+    cursor: pointer;
+}
+
+/* Like button styles - CSS heart shape */
+.card__like-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1;
+  
+  /* Heart shape using CSS */
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 10px;
+    height: 16px;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 10px 10px 0 0;
+  }
+  
+  &::before {
+    left: 10px;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+  }
+  
+  &::after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+  }
+}
+
+.card__like-button_active {
+  /* Filled heart - red color */
+  &::before,
+  &::after {
+    background: #FF4D4D;
+    border-color: #FF4D4D;
+  }
 }
