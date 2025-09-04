@@ -33,7 +33,7 @@ Main page with weather-based clothing recommendations
 📥 Installation
 
 Clone the repository:
-git clone https://github.com/zaryab-afk/se_project_react.git
+git clone https://github.com/zeryab-afk/se_project_react.git
 cd se_project_react
 
 
