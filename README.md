@@ -48,7 +48,7 @@ npm run dev
 Ensure the backend server is running on port 3001 (see backend repository for setup):
 
 
-Backend Repository: https://github.com/zaryab-afk/se_project_express (Public repository)
+Backend Repository: https://github.com/zeryab-afk/se_project_express (Public repository)
 
 
 Ensure MongoDB is running locally (mongod) for backend database connectivity.
