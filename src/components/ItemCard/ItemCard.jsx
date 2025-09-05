@@ -2,6 +2,8 @@
 import "./ItemCard.css";
 import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
+import heartOutline from "../../assets/heart.png"; // outline heart
+import heartFilled from "../../assets/heart-liked.png";   // filled black heart
 
 function ItemCard({ item, onCardClick, onCardLike, isLoggedIn }) {
   const currentUser = useContext(CurrentUserContext);
@@ -9,9 +11,6 @@ function ItemCard({ item, onCardClick, onCardLike, isLoggedIn }) {
   // Check if the item was liked by the current user
   const isLiked = item.likes.some(id => id === currentUser._id);
   
-  // Like button class based on like status
-  const itemLikeButtonClassName = `card__like-button ${isLiked ? 'card__like-button_active' : ''}`;
-
   const handleLikeClick = () => {
     onCardLike({ _id: item._id, isLiked });
   };
@@ -28,10 +27,16 @@ function ItemCard({ item, onCardClick, onCardLike, isLoggedIn }) {
       {isLoggedIn && (
         <button
           type="button"
-          className={itemLikeButtonClassName}
+          className="card__like-button"
           onClick={handleLikeClick}
           aria-label={isLiked ? 'Unlike' : 'Like'}
-        />
+        >
+          <img 
+            src={isLiked ? heartFilled : heartOutline} 
+            alt="heart icon" 
+            className="card__heart-icon" 
+          />
+        </button>
       )}
     </li>
   );

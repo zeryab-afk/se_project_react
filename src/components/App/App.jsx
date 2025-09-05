@@ -37,8 +37,18 @@ function AppContent() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState('F');
   const [currentUser, setCurrentUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // NEW: Loading state (reviewer suggestion #1)
 
-  const navigate = useNavigate(); // Now this works because it's inside Router
+  const navigate = useNavigate();
+
+  // NEW: Universal submit handler (reviewer suggestion #2)
+  const handleSubmit = (request) => {
+    setIsLoading(true);
+    request()
+      .then(handleCloseModal)
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
+  };
 
   // Check for token on app load
   useEffect(() => {
@@ -56,26 +66,26 @@ function AppContent() {
     }
   }, []);
 
-  // Handle user registration
+  // Handle user registration (UPDATED with handleSubmit)
   const handleRegister = ({ name, avatar, email, password }) => {
-    register({ name, avatar, email, password })
-      .then(() => {
+    const makeRequest = () => {
+      return register({ name, avatar, email, password }).then(() => {
         handleLogin({ email, password });
-        handleCloseModal();
-      })
-      .catch((err) => console.error("Registration failed:", err));
+      });
+    };
+    handleSubmit(makeRequest);
   };
 
-  // Handle user login
+  // Handle user login (UPDATED with handleSubmit)
   const handleLogin = ({ email, password }) => {
-    login({ email, password })
-      .then((res) => {
+    const makeRequest = () => {
+      return login({ email, password }).then((res) => {
         localStorage.setItem("jwt", res.token);
         setCurrentUser(res.user || {});
         setIsLoggedIn(true);
-        handleCloseModal();
-      })
-      .catch((err) => console.error("Login failed:", err));
+      });
+    };
+    handleSubmit(makeRequest);
   };
 
   // Handle user logout
@@ -86,15 +96,13 @@ function AppContent() {
     navigate("/");
   };
 
-  // Handle profile update
+  // Handle profile update (UPDATED with handleSubmit)
   const handleUpdateUser = ({ name, avatar }) => {
     const token = localStorage.getItem("jwt");
-    updateUserProfile({ name, avatar }, token)
-      .then((updatedUser) => {
-        setCurrentUser(updatedUser);
-        handleCloseModal();
-      })
-      .catch((err) => console.error("Profile update failed:", err));
+    const makeRequest = () => {
+      return updateUserProfile({ name, avatar }, token).then(setCurrentUser);
+    };
+    handleSubmit(makeRequest);
   };
 
   // Handle card likes
@@ -117,6 +125,18 @@ function AppContent() {
         })
         .catch((err) => console.error("Dislike failed:", err));
     }
+  };
+
+  // Handle add item (UPDATED with handleSubmit)
+  const handleAddItemSubmit = (item, resetForm) => {
+    const token = localStorage.getItem("jwt");
+    const makeRequest = () => {
+      return addClothingItem(item, token).then((newItem) => {
+        setClothingItems([newItem, ...clothingItems]);
+        resetForm();
+      });
+    };
+    handleSubmit(makeRequest);
   };
 
   const handleAddClothesClick = () => {
@@ -145,17 +165,6 @@ function AppContent() {
 
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === 'F' ? 'C' : 'F');
-  };
-
-  const handleAddItemSubmit = (item, resetForm) => {
-    const token = localStorage.getItem("jwt");
-    addClothingItem(item, token)
-      .then((newItem) => {
-        setClothingItems([newItem, ...clothingItems]);
-        resetForm();
-        handleCloseModal();
-      })
-      .catch((err) => console.error(err));
   };
 
   const handleDeleteItem = (item) => {
@@ -195,7 +204,6 @@ function AppContent() {
             onLoginClick={() => setIsLoginModalOpen(true)}
             onRegisterClick={() => setIsRegisterModalOpen(true)}
             isLoggedIn={isLoggedIn}
-            onLogout={handleLogout}
           />
 
           <Routes>
@@ -221,6 +229,7 @@ function AppContent() {
                     onAddClothesClick={handleAddClothesClick}
                     onEditProfileClick={handleEditProfileClick}
                     onCardLike={handleCardLike}
+                    onLogout={handleLogout} // NEW: Pass logout to Sidebar
                   />
                 </ProtectedRoute>
               } 
@@ -231,6 +240,7 @@ function AppContent() {
             isOpen={isAddClothesModalOpen}
             onAddItem={handleAddItemSubmit}
             onCloseModal={handleCloseModal}
+            isLoading={isLoading} // NEW: Pass loading state
           />
 
           <RegisterModal
@@ -241,6 +251,7 @@ function AppContent() {
               setIsRegisterModalOpen(false);
               setIsLoginModalOpen(true);
             }}
+            isLoading={isLoading} // NEW: Pass loading state
           />
 
           <LoginModal
@@ -251,13 +262,14 @@ function AppContent() {
               setIsLoginModalOpen(false);
               setIsRegisterModalOpen(true);
             }}
+            isLoading={isLoading} // NEW: Pass loading state
           />
 
           <EditProfileModal
             isOpen={isEditProfileModalOpen}
             onClose={handleCloseModal}
             onUpdateUser={handleUpdateUser}
-            currentUser={currentUser}
+            isLoading={isLoading} // NEW: Pass loading state
           />
 
           <Footer />

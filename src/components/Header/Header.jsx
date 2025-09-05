@@ -7,7 +7,7 @@ import avatar from "../../assets/avatar.png";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function Header({ onAddClothesClick, weatherData, onLoginClick, onRegisterClick, isLoggedIn, onLogout }) {
+function Header({ onAddClothesClick, weatherData, onLoginClick, onRegisterClick, isLoggedIn }) { // Removed onLogout prop
   const [currentDateTime, setCurrentDateTime] = useState("");
   const currentUser = useContext(CurrentUserContext);
 
@@ -29,7 +29,7 @@ function Header({ onAddClothesClick, weatherData, onLoginClick, onRegisterClick,
     return () => clearInterval(interval); 
   }, []);
 
-  // NEW: Get user avatar or initial
+  // Get user avatar or initial
   const getUserAvatar = () => {
     if (currentUser.avatar) {
       return currentUser.avatar;
@@ -37,7 +37,7 @@ function Header({ onAddClothesClick, weatherData, onLoginClick, onRegisterClick,
     return avatar; // default avatar
   };
 
-  // NEW: Get user name or initial
+  // Get user name or initial
   const getUserName = () => {
     if (currentUser.name) {
       return currentUser.name;
@@ -45,7 +45,7 @@ function Header({ onAddClothesClick, weatherData, onLoginClick, onRegisterClick,
     return "Terrence Tegegne"; // default name
   };
 
-  // NEW: Get user initial for placeholder
+  // Get user initial for placeholder
   const getUserInitial = () => {
     if (currentUser.name) {
       return currentUser.name.charAt(0).toUpperCase();
@@ -76,9 +76,6 @@ function Header({ onAddClothesClick, weatherData, onLoginClick, onRegisterClick,
           </button>
           
           <div className="header__user-container">
-            <button className="header__logout-btn" onClick={onLogout}>
-              Log out
-            </button>
             <Link to="/profile" className="header__user-link">
               <p className="header__username">{getUserName()}</p>
               {currentUser.avatar ? (

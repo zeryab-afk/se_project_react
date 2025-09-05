@@ -1,18 +1,24 @@
-// src/components/RegisterModal/RegisterModal.jsx
-import { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { useForm } from "../../hooks/useForm";
 
 function RegisterModal({ isOpen, onClose, onRegister, onLoginClick }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [avatar, setAvatar] = useState("");
-
-  const isFormValid = email && password && name && avatar;
+  const initialValues = {
+    email: "",
+    password: "",
+    name: "",
+    avatar: ""
+  };
+  
+  const { values, handleChange, errors, isValid } = useForm(initialValues);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onRegister({ name, avatar, email, password });
+    onRegister({ 
+      name: values.name, 
+      avatar: values.avatar, 
+      email: values.email, 
+      password: values.password 
+    });
   };
 
   return (
@@ -24,55 +30,65 @@ function RegisterModal({ isOpen, onClose, onRegister, onLoginClick }) {
       buttonText="Sign up"
       onAltClick={onLoginClick}
       altButtonText="Log in"
-      isFormValid={isFormValid}
+      isFormValid={isValid}
     >
       <div className="modal__input-group">
         <label className="modal__label" htmlFor="register-email">Email*</label>
         <input
           id="register-email"
           className="modal__input"
+          name="email"
           type="email"
           placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={values.email}
+          onChange={handleChange}
           required
         />
+        <span className="modal__error">{errors.email}</span>
       </div>
       <div className="modal__input-group">
         <label className="modal__label" htmlFor="register-password">Password*</label>
         <input
           id="register-password"
           className="modal__input"
+          name="password"
           type="password"
           placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={values.password}
+          onChange={handleChange}
           required
+          minLength="6"
         />
+        <span className="modal__error">{errors.password}</span>
       </div>
       <div className="modal__input-group">
         <label className="modal__label" htmlFor="register-name">Name *</label>
         <input
           id="register-name"
           className="modal__input"
+          name="name"
           type="text"
           placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={values.name}
+          onChange={handleChange}
           required
+          minLength="2"
         />
+        <span className="modal__error">{errors.name}</span>
       </div>
       <div className="modal__input-group">
         <label className="modal__label" htmlFor="register-avatar">Avatar URL *</label>
         <input
           id="register-avatar"
           className="modal__input"
+          name="avatar"
           type="url"
           placeholder="Avatar URL"
-          value={avatar}
-          onChange={(e) => setAvatar(e.target.value)}
+          value={values.avatar}
+          onChange={handleChange}
           required
         />
+        <span className="modal__error">{errors.avatar}</span>
       </div>
     </ModalWithForm>
   );

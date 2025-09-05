@@ -8,17 +8,22 @@ export const checkResponse = (res) => {
   return Promise.reject(`Error: ${res.status}`);
 };
 
+// NEW: Universal request function to avoid duplication
+export function request(url, options) {
+  return fetch(url, options).then(checkResponse);
+}
+
 export const getClothingItems = () => {
-  return fetch(`${baseUrl}/items`, {
+  return request(`${baseUrl}/items`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
-  }).then(checkResponse);
+  });
 };
 
 export const addClothingItem = (item, token) => {
-  return fetch(`${baseUrl}/items`, {
+  return request(`${baseUrl}/items`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -29,48 +34,46 @@ export const addClothingItem = (item, token) => {
       imageUrl: item.imageUrl,
       weather: item.weather,
     }),
-  }).then(checkResponse);
+  });
 };
 
 export const deleteClothingItem = (id, token) => {
-  return fetch(`${baseUrl}/items/${id}`, {
+  return request(`${baseUrl}/items/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
-  }).then(checkResponse);
+  });
 };
 
-// NEW: Like/Dislike functions
 export const addCardLike = (id, token) => {
-  return fetch(`${baseUrl}/items/${id}/likes`, {
+  return request(`${baseUrl}/items/${id}/likes`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
-  }).then(checkResponse);
+  });
 };
 
 export const removeCardLike = (id, token) => {
-  return fetch(`${baseUrl}/items/${id}/likes`, {
+  return request(`${baseUrl}/items/${id}/likes`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
-  }).then(checkResponse);
+  });
 };
 
-// NEW: Update user profile
 export const updateUserProfile = ({ name, avatar }, token) => {
-  return fetch(`${baseUrl}/users/me`, {
+  return request(`${baseUrl}/users/me`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ name, avatar }),
-  }).then(checkResponse);
+  });
 };

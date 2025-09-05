@@ -72,3 +72,19 @@
     font-size: 28px;
   }
 }
+/* Add to existing Sidebar.css */
+.sidebar__logout-button {
+  background: none;
+  border: none;
+  color: rgba(0, 0, 0, 0.6);
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 8px;
+}
+
+.sidebar__logout-button:hover {
+  opacity: 0.7;
+}

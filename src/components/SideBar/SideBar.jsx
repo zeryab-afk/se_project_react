@@ -4,7 +4,7 @@ import avatar from '../../assets/avatar.png';
 import { useContext } from 'react';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 
-function SideBar({ onEditProfileClick }) {
+function SideBar({ onEditProfileClick, onLogout }) { // Added onLogout prop
   const currentUser = useContext(CurrentUserContext);
 
   const getUserAvatar = () => {
@@ -40,6 +40,9 @@ function SideBar({ onEditProfileClick }) {
       <p className="sidebar__username">{getUserName()}</p>
       <button className="sidebar__edit-button" onClick={onEditProfileClick}>
         Change profile data
+      </button>
+      <button className="sidebar__logout-button" onClick={onLogout}>
+        Log out
       </button>
     </div>
   );

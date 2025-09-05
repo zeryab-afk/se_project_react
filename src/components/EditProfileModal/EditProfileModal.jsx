@@ -1,10 +1,12 @@
 // src/components/EditProfileModal/EditProfileModal.jsx
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function EditProfileModal({ isOpen, onClose, onUpdateUser, currentUser }) {
+function EditProfileModal({ isOpen, onClose, onUpdateUser }) { // Removed currentUser prop
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
+  const currentUser = useContext(CurrentUserContext); // Get from context
 
   useEffect(() => {
     if (currentUser) {
