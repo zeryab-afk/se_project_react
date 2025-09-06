@@ -1,6 +1,7 @@
 import './ClothesSection.css';
 import ItemCard from '../ItemCard/ItemCard';
 
+
 function ClothesSection({ clothingItems, onCardClick, onAddClothesClick, onCardLike, isLoggedIn }) {
   return (
     <div className="clothes-section">

@@ -5,7 +5,7 @@ import ClothesSection from '../ClothesSection/ClothesSection';
 import { useContext } from 'react';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 
-function Profile({ clothingItems, onCardClick, onAddClothesClick, onEditProfileClick, onCardLike }) {
+function Profile({ clothingItems, onCardClick, onAddClothesClick, onEditProfileClick, onCardLike, isLoggedIn }) {  // ← ADD isLoggedIn parameter
   const currentUser = useContext(CurrentUserContext);
 
   return (
@@ -20,6 +20,7 @@ function Profile({ clothingItems, onCardClick, onAddClothesClick, onEditProfileC
           onCardClick={onCardClick}
           onAddClothesClick={onAddClothesClick}
           onCardLike={onCardLike}
+          isLoggedIn={isLoggedIn} 
         />
       </div>
     </div>

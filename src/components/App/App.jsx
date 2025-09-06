@@ -37,11 +37,10 @@ function AppContent() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState('F');
   const [currentUser, setCurrentUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isLoading, setIsLoading] = useState(false); // NEW: Loading state (reviewer suggestion #1)
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
-  // NEW: Universal submit handler (reviewer suggestion #2)
   const handleSubmit = (request) => {
     setIsLoading(true);
     request()
@@ -66,7 +65,7 @@ function AppContent() {
     }
   }, []);
 
-  // Handle user registration (UPDATED with handleSubmit)
+  // Handle user registration
   const handleRegister = ({ name, avatar, email, password }) => {
     const makeRequest = () => {
       return register({ name, avatar, email, password }).then(() => {
@@ -76,7 +75,7 @@ function AppContent() {
     handleSubmit(makeRequest);
   };
 
-  // Handle user login (UPDATED with handleSubmit)
+  // Handle user login
   const handleLogin = ({ email, password }) => {
     const makeRequest = () => {
       return login({ email, password }).then((res) => {
@@ -96,7 +95,7 @@ function AppContent() {
     navigate("/");
   };
 
-  // Handle profile update (UPDATED with handleSubmit)
+  // Handle profile update
   const handleUpdateUser = ({ name, avatar }) => {
     const token = localStorage.getItem("jwt");
     const makeRequest = () => {
@@ -127,7 +126,7 @@ function AppContent() {
     }
   };
 
-  // Handle add item (UPDATED with handleSubmit)
+  // Handle add item
   const handleAddItemSubmit = (item, resetForm) => {
     const token = localStorage.getItem("jwt");
     const makeRequest = () => {
@@ -229,7 +228,8 @@ function AppContent() {
                     onAddClothesClick={handleAddClothesClick}
                     onEditProfileClick={handleEditProfileClick}
                     onCardLike={handleCardLike}
-                    onLogout={handleLogout} // NEW: Pass logout to Sidebar
+                    onLogout={handleLogout}
+                    isLoggedIn={isLoggedIn}  /* ← FIXED: Added isLoggedIn prop */
                   />
                 </ProtectedRoute>
               } 
@@ -240,7 +240,7 @@ function AppContent() {
             isOpen={isAddClothesModalOpen}
             onAddItem={handleAddItemSubmit}
             onCloseModal={handleCloseModal}
-            isLoading={isLoading} // NEW: Pass loading state
+            isLoading={isLoading}
           />
 
           <RegisterModal
@@ -251,7 +251,7 @@ function AppContent() {
               setIsRegisterModalOpen(false);
               setIsLoginModalOpen(true);
             }}
-            isLoading={isLoading} // NEW: Pass loading state
+            isLoading={isLoading}
           />
 
           <LoginModal
@@ -262,14 +262,14 @@ function AppContent() {
               setIsLoginModalOpen(false);
               setIsRegisterModalOpen(true);
             }}
-            isLoading={isLoading} // NEW: Pass loading state
+            isLoading={isLoading}
           />
 
           <EditProfileModal
             isOpen={isEditProfileModalOpen}
             onClose={handleCloseModal}
             onUpdateUser={handleUpdateUser}
-            isLoading={isLoading} // NEW: Pass loading state
+            isLoading={isLoading}
           />
 
           <Footer />
