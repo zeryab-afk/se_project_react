@@ -1,5 +1,5 @@
 // src/utils/api.js
-export const baseUrl = 'http://localhost:3001';
+export const baseUrl = process.env.REACT_APP_API_URL;
 
 export const checkResponse = (res) => {
   if (res.ok) {
@@ -8,7 +8,7 @@ export const checkResponse = (res) => {
   return Promise.reject(`Error: ${res.status}`);
 };
 
-// NEW: Universal request function to avoid duplication
+// Universal request function
 export function request(url, options) {
   return fetch(url, options).then(checkResponse);
 }
