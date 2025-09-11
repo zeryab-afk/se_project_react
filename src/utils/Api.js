@@ -1,12 +1,22 @@
 // src/utils/api.js
-console.log("API base URL:", process.env.REACT_APP_API_URL);
 
-export const baseUrl = import.meta.env.VITE_API_URL;
+// Debug: Check if environment variable is loaded
+console.log("All env variables:", import.meta.env);
+console.log("API URL from env:", import.meta.env.VITE_API_URL);
+
+// Use the CORRECT backend URL with fallback
+const API_BASE = import.meta.env.VITE_API_URL || "https://wtwr-backend.up.railway.app";
+console.log("Using API base:", API_BASE);
+
+export const baseUrl = API_BASE;
 
 export const checkResponse = (res) => {
-  if (res.ok) return res.json();
+  if (res.ok) {
+    return res.json();
+  }
   return Promise.reject(`Error: ${res.status}`);
 };
+
 // Universal request function
 export function request(url, options) {
   return fetch(url, options).then(checkResponse);
