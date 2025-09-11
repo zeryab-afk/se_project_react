@@ -1,7 +1,7 @@
 // src/utils/api.js
 console.log("API base URL:", process.env.REACT_APP_API_URL);
 
-export const baseUrl = process.env.REACT_APP_API_URL;
+export const baseUrl = import.meta.env.VITE_API_URL;
 
 export const checkResponse = (res) => {
   if (res.ok) return res.json();
