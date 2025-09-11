@@ -1,13 +1,12 @@
 // src/utils/api.js
+console.log("API base URL:", process.env.REACT_APP_API_URL);
+
 export const baseUrl = process.env.REACT_APP_API_URL;
 
 export const checkResponse = (res) => {
-  if (res.ok) {
-    return res.json();
-  }
+  if (res.ok) return res.json();
   return Promise.reject(`Error: ${res.status}`);
 };
-
 // Universal request function
 export function request(url, options) {
   return fetch(url, options).then(checkResponse);
